@@ -2,7 +2,7 @@ import './App.css';
 import axios from "axios";
 import { useState } from "react";
 
-const BASE_URL = "https://swami-swad-backend.onrender.com"; // 🔥 REPLACE THIS
+const BASE_URL = "https://swami-swad-backend.onrender.com";
 
 function App() {
 
@@ -46,7 +46,6 @@ function App() {
     margin: "3px"
   };
 
-  // ✅ SECURE ADMIN LOGIN
   const handleAdminLogin = async () => {
     try {
       const response = await axios.post(`${BASE_URL}/admin/login`, {
@@ -137,14 +136,14 @@ function App() {
         background: "linear-gradient(to right, #fff7e6, #ffe0b3)"
       }}>
         <h1 style={{ fontSize: "60px", color: "#8b0000" }}>
-          Swami Swad
+          Swami Swaad
         </h1>
         <p style={{ fontSize: "22px", marginBottom: "40px" }}>
           Authentic White Ukadache Modak
         </p>
         <img
           src="/modak.jpeg"
-          alt="Modak"
+          alt="Fresh White Ukadache Modak - Traditional Indian Sweet"
           style={{
             width: "100%",
             maxWidth: "600px",
@@ -192,6 +191,73 @@ function App() {
                 editId ? "Update Order" : "Submit Order"}
             </button>
           </form>
+        </div>
+      </section>
+
+      {/* Certificates Section */}
+      <section style={{
+        padding: "60px 20px",
+        backgroundColor: "#fff",
+        textAlign: "center"
+      }}>
+        <h2 style={{ fontSize: "36px", color: "#8b0000", marginBottom: "40px" }}>
+          Our Certifications
+        </h2>
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          gap: "40px",
+          maxWidth: "1000px",
+          margin: "0 auto"
+        }}>
+          {/* Certificate 1 - Replace /certificate1.jpg with your actual certificate image */}
+          <div style={{
+            flex: "1 1 400px",
+            maxWidth: "450px",
+            backgroundColor: "#f9f9f9",
+            padding: "20px",
+            borderRadius: "15px",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.1)"
+          }}>
+            <img
+              src="/certificate1.jpg"
+              alt="Food Safety Certificate - Swami Swaad"
+              style={{
+                width: "100%",
+                height: "auto",
+                borderRadius: "10px",
+                border: "2px solid #ddd"
+              }}
+            />
+            <p style={{ marginTop: "15px", fontSize: "16px", color: "#555" }}>
+              Certificate 1
+            </p>
+          </div>
+
+          {/* Certificate 2 - Replace /certificate2.jpg with your actual certificate image */}
+          <div style={{
+            flex: "1 1 400px",
+            maxWidth: "450px",
+            backgroundColor: "#f9f9f9",
+            padding: "20px",
+            borderRadius: "15px",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.1)"
+          }}>
+            <img
+              src="/certificate2.jpg"
+              alt="Quality Certificate - Swami Swaad"
+              style={{
+                width: "100%",
+                height: "auto",
+                borderRadius: "10px",
+                border: "2px solid #ddd"
+              }}
+            />
+            <p style={{ marginTop: "15px", fontSize: "16px", color: "#555" }}>
+              Certificate 2
+            </p>
+          </div>
         </div>
       </section>
 
@@ -275,13 +341,42 @@ function App() {
         )}
       </section>
 
+      {/* Contact Info Section */}
+      <section style={{
+        padding: "40px 20px",
+        backgroundColor: "#fff7e6",
+        textAlign: "center"
+      }}>
+        <h2 style={{ fontSize: "32px", color: "#8b0000", marginBottom: "30px" }}>
+          Contact Us
+        </h2>
+        <div style={{
+          maxWidth: "600px",
+          margin: "0 auto",
+          lineHeight: "2"
+        }}>
+          <p style={{ fontSize: "18px", color: "#333" }}>
+            📞 <strong>Phone:</strong> <a href="tel:+919876543210" style={{ color: "#8b0000", textDecoration: "none" }}>+91 7709055577</a>
+          </p>
+          <p style={{ fontSize: "18px", color: "#333" }}>
+            📧 <strong>Email:</strong> <a href="mailto:info@swamiswaad.com" style={{ color: "#8b0000", textDecoration: "none" }}>info@swamiswaad.com</a>
+          </p>
+          <p style={{ fontSize: "18px", color: "#333" }}>
+            📍 <strong>Address:</strong> Dhanori-pune, Maharashtra, India
+          </p>
+          <p style={{ fontSize: "18px", color: "#333", marginTop: "20px" }}>
+            🕒 <strong>Business Hours:</strong> 9:00 AM - 8:00 PM (All Days)
+          </p>
+        </div>
+      </section>
+
       <footer style={{
         textAlign: "center",
         padding: "15px",
         backgroundColor: "#8b0000",
         color: "white"
       }}>
-        © 2026 Swami Swad | Authentic Ukadache Modak
+        © 2026 Swami Swaad | Authentic Ukadache Modak
       </footer>
 
     </div>
