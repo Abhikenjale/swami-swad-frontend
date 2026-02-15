@@ -2,6 +2,8 @@ import './App.css';
 import axios from "axios";
 import { useState } from "react";
 
+const BASE_URL = "https://swami-swad-backend.onrender.com"; // 🔥 REPLACE THIS
+
 function App() {
 
   const [name, setName] = useState("");
@@ -44,11 +46,19 @@ function App() {
     margin: "3px"
   };
 
-  const handleAdminLogin = () => {
-    if (adminPassword === "admin123") {
-      setIsAdmin(true);
-      setAdminPassword("");
-    } else {
+  // ✅ SECURE ADMIN LOGIN
+  const handleAdminLogin = async () => {
+    try {
+      const response = await axios.post(`${BASE_URL}/admin/login`, {
+        username: "admin",
+        password: adminPassword
+      });
+
+      if (response.status === 200) {
+        setIsAdmin(true);
+        setAdminPassword("");
+      }
+    } catch (error) {
       alert("Wrong Password!");
     }
   };
@@ -71,13 +81,13 @@ function App() {
       setLoading(true);
 
       if (editId) {
-        await axios.put(`http://localhost:8080/api/contact/${editId}`, {
+        await axios.put(`${BASE_URL}/api/contact/${editId}`, {
           name, mobile, message
         });
         alert("Order Updated Successfully ✏️");
         setEditId(null);
       } else {
-        await axios.post("http://localhost:8080/api/contact", {
+        await axios.post(`${BASE_URL}/api/contact`, {
           name, mobile, message
         });
         alert("Order Sent Successfully 🙏");
@@ -97,7 +107,7 @@ function App() {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:8080/api/contact");
+      const response = await axios.get(`${BASE_URL}/api/contact`);
       setOrders(response.data);
     } catch (error) {
       console.error(error);
@@ -109,7 +119,7 @@ function App() {
   const deleteOrder = async (id) => {
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:8080/api/contact/${id}`);
+      await axios.delete(`${BASE_URL}/api/contact/${id}`);
       fetchOrders();
     } catch (error) {
       console.error(error);
@@ -121,7 +131,6 @@ function App() {
   return (
     <div style={{ fontFamily: "Poppins, sans-serif", backgroundColor: "#fafafa" }}>
 
-      {/* HERO */}
       <header style={{
         textAlign: "center",
         padding: "80px 20px",
@@ -145,7 +154,6 @@ function App() {
         />
       </header>
 
-      {/* ORDER CARD */}
       <section style={{
         display: "flex",
         justifyContent: "center",
@@ -187,7 +195,6 @@ function App() {
         </div>
       </section>
 
-      {/* ADMIN */}
       <section style={{ padding: "50px 20px", backgroundColor: "#f5f5f5" }}>
         {!isAdmin ? (
           <div style={{ textAlign: "center" }}>
@@ -266,19 +273,6 @@ function App() {
             </div>
           </div>
         )}
-      </section>
-
-      {/* CONTACT */}
-      <section style={{
-        textAlign: "center",
-        padding: "50px 20px",
-        backgroundColor: "#fff7e6"
-      }}>
-        <h2>Contact Us</h2>
-        <p><strong>Owner:</strong> Swami Swad</p>
-        <p><strong>Phone:</strong> 9876543210</p>
-        <p><strong>Email:</strong> swamiswad@gmail.com</p>
-        <p><strong>Location:</strong> Your City Name</p>
       </section>
 
       <footer style={{
